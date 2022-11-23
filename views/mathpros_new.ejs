@@ -1,0 +1,39 @@
+<%- include("partials/header") %>
+<div class="container mt-5">
+	
+	<h4 class="mb-4">
+		Input Document to MongoDB Atlas
+	</h4>
+	<!--br /-->
+	<form action="/mathpros" method="POST">
+  	<div class="mb-3">
+    	<label for="title" class="form-label">Problem</label>
+		<input type="text" class="form-control" name="problem" placeholder="e.g. 1. $\left(2^{\sqrt{3}} \times 4\right)^{\sqrt{3}-2}$ 의 값은? [2점]" autofocus>
+  	</div>
+	<div class="mb-3">
+    	<label for="description" class="form-label">Choices</label>
+    	<input type="text" class="form-control" name="choice_1" placeholder="e.g. $11$">
+		<input type="text" class="form-control" name="choice_2">
+		<input type="text" class="form-control" name="choice_3">
+		<input type="text" class="form-control" name="choice_4">
+		<input type="text" class="form-control" name="choice_5">
+  	</div>	
+	<div class="mb-3">
+    	<label for="image" class="form-label">Answer</label>
+    	<input type="text" class="form-control" name="ans" placeholder="e.g. ②">
+  	</div>
+	<div class="mb-3">
+    	<label for="image" class="form-label">Solution</label>
+    	<input type="text" class="form-control" name="solution" placeholder="e.g. [[d2003]] $f^{\prime}(x)=3 x^{2}+6 x+1$이므로 [[d2004]] $f^{\prime}(1)=3+6+1=10$">
+  	</div>	
+	<div class="mb-3">
+    	<label for="image" class="form-label">Infomation</label>
+    	<input type="text" class="form-control" name="info" placeholder="e.g. 32111_c10">
+  	</div>	
+		
+   	<button type="submit" class="btn btn-primary">Submit</button>    <!-- btn-success, btn-warning, ... -->
+	</form>
+
+</div>	
+
+<%- include("partials/footer") %>

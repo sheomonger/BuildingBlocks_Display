@@ -1,0 +1,84 @@
+<%- include("partials/header") %>
+<div class="container mt-5 mb-5">
+
+	<% mpros.forEach((mpro) => { %>
+	<div class="card mx-5 mb-3" style="width: 92%;">
+  		<div class="card-header">
+    		<%= mpro.problem %>
+  		</div>
+		<% if (mpro.choices != '') { %>
+  		<ul class="list-group list-group-flush">
+			<% for (let i = 0; i < mpro.choices.length; i++) { %> 
+			<li class="list-group-item"><%= mpro.choices[i] %></li>
+			<% } %>
+  		</ul>
+		<% } %>
+	</div>
+    
+	<% if (mpro.solution.startsWith("[[")) { %> 		
+	<div class="accordion" id="accordionExample">
+		<% let sol = mpro.solution; %>
+		
+		<% let id = 0; %>
+		<% while (sol != '')  { %>
+		<div class="accordion-item">
+			<% let s = sol.search(/\[\[/); %>
+			<% id = id+1; %>
+			<% if (s >= 0) { %>
+				<% sol = sol.slice(s+2); %>
+				<% let skey = sol.slice(0, 5); %>
+				<% if (skey.match(/\D\d{4}/)) { %>
+    			<h2 class="accordion-header" id="heading-<%= id.toString() %>">
+				<!-- button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" -->
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-<%= id.toString() %>" aria-expanded="true" aria-controls="collapse-<%= id.toString() %>">	
+    	    		<%= btable[skey].content %>
+      			</button>
+	    		</h2>
+				<% sol = sol.slice(5+2); %>	
+				<% s = sol.search(/\[\[/); %>
+					<% if (s >= 0) { %> 
+					<!-- div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample" -->	<!-- NO, class="accordion-collapse collapse show" -->
+					<div id="collapse-<%= id.toString() %>" class="accordion-collapse collapse" aria-labelledby="heading-<%= id.toString() %>" data-bs-parent="#accordionExample">
+					<div class="accordion-body">
+						<%= sol.substring(0, s) %>
+					</div>
+					</div
+					<% } else { %>  <%# -1 %>
+						<!-- div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample" -->
+						<div id="collapse-<%= id.toString() %>" class="accordion-collapse collapse" aria-labelledby="heading-<%= id.toString() %>" data-bs-parent="#accordionExample">
+						<div class="accordion-body">
+							<%= sol %>
+						</div>
+						</div
+						<% sol = "" %>
+					<% } %>	
+					<% sol = sol.slice(s) %>
+				<% } %>
+			<% } %>
+    	
+			<% } %> <%# while %>			
+     	</div>	
+							
+		<div class="accordion-item">
+    		<h2 class="accordion-header" id="headingOne">
+      		<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        		정답
+      		</button>
+    		</h2>
+    		<div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      		<div class="accordion-body">
+        		<%= mpro.answer %>
+      		</div>
+    		</div>
+  		</div>
+	  		
+	</div>
+	<% } else { %>  <%# just in case that block was not developed %>
+	
+	<% } %>
+	
+	<% }) %>
+	
+</div>
+	
+<%- include("partials/footer") %>

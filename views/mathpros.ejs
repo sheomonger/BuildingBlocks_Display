@@ -1,0 +1,17 @@
+<%- include("partials/header") %>
+	<div class="container">
+		<div class="row mt-2">	
+			<% mpros.forEach((mpro) => { %> 
+				<div class="card mx-3 my-3">
+					<p class="card-text mb-3 mx-2"><%= mpro.problem %></p>
+					<% mpro.choices.forEach((s) => { %>
+						<p class="card-text mb-3 mx-2"><%= s %></p>
+					<% }) %>
+					<!--p class="card-text mb-3 mx-2"><%= mpro.choices %></p-->
+					<p class="card-text mb-3 mx-2"><%= mpro.answer %></p>
+					<p class="card-text mb-3 mx-2"><%= mpro.solution %></p>
+				</div>
+			<%	}) %>		
+		</div>
+	</div>	
+<%- include("partials/footer") %>
