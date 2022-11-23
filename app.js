@@ -72,11 +72,6 @@ app.get("/mathpros/new", (req, res) => {
 	res.render("mathpros_new");
 })
 
-// show route testing
-app.get("/mathpros/new/:id", (req, res) => {
-	res.send("Show page for test with ID of: " + req.params.id);
-}) //
-
 app.listen(3000, () => {
 	console.log("lambdaalgo is running...");
 });
