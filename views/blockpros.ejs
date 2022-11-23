@@ -2,7 +2,7 @@
 <div class="container mt-5 mb-5">
 
 	<% mpros.forEach((mpro) => { %>
-	<div class="card mx-5 mb-3" style="width: 92%;">
+	<div class="card mx-4 mb-3 mt-5" style="width: 96%;">
   		<div class="card-header">
     		<%= mpro.problem %>
   		</div>
@@ -54,8 +54,8 @@
 					<% } %>	
 					<% sol = sol.slice(s) %>
 				<% } %>
-			<% } %>
-    	
+			<% } %> 
+    			
 			<% } %> <%# while %>			
      	</div>	
 							
@@ -70,14 +70,41 @@
         		<%= mpro.answer %>
       		</div>
     		</div>
-  		</div>
+  		</div>					
 	  		
 	</div>
 	<% } else { %>  <%# just in case that block was not developed %>
+		<div class="accordion" id="accordionExample">
+  			<div class="accordion-item">
+    		<h2 class="accordion-header" id="headingOne">
+      		<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        		해설
+      		</button>
+    		</h2>
+    		<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      		<div class="accordion-body">
+				<%= mpro.solution %>
+      		</div>
+    		</div>
+  			</div>
+			
+			<div class="accordion-item">
+    		<h2 class="accordion-header" id="headingOne">
+      		<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        		정답
+      		</button>
+    		</h2>
+    		<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      		<div class="accordion-body">
+        		<%= mpro.answer %>
+      		</div>
+    		</div>
+  			</div>
+		</div>
+	<% } %>			
+						
 	
-	<% } %>
-	
-	<% }) %>
+	<% }) %>  <%# forEach %>
 	
 </div>
 	
